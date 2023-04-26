@@ -3,3 +3,17 @@
     padding: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+h1{
+    text-align: center;
+}
+textarea{
+    width: 700px;
+    height: 200px;
+}
+.text_area_block{
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    margin-top: 20px;
+}
