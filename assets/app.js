@@ -30,23 +30,35 @@ keyboardBlock.appendChild(keyboardKeys);
 
 
 const keyLayout = [
-    "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
-    "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
-    "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter",
-    "done", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?",
-    "space"
+    "`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "backspace",
+   "tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\", "del",
+    "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "'", "enter",
+    "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?", ">", "shift", "ctrl",
+    "home", "alt", "space", "alt", "<", ">", ">", "ctrl"
 ];
 
-function createKeyboard(){
+
     for (let i = 0; i < keyLayout.length; i++) {
         
+            textAreaBlock.addEventListener("keydown", (e) => {
+                if (e.key === keyLayout[i]) {
+                    key.classList.add("active")
+                }
+            });
+        textAreaBlock.addEventListener("keyup", (e) => {
+            if (e.key === keyLayout[i]) {
+                key.classList.remove("active")
+            }
+        });
         const key = document.createElement("button");
-        key.classList.add("keyboard__key")
-        console.log(key);
-        keyboardKeys.appendChild(key)
-        key.innerText = keyLayout[i]
+        key.classList.add("keyboard__key");
+        keyboardKeys.appendChild(key);
+        key.innerText = keyLayout[i];
+        
     }
     
-}
 
-createKeyboard()
+
+    
+
+

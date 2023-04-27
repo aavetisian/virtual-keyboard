@@ -2,13 +2,16 @@
     margin: 0;
     padding: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-sizing: border-box;
 }
 h1{
     text-align: center;
+    padding: 10px;
 }
 textarea{
     width: 700px;
     height: 200px;
+    margin: 10px;
 }
 .text_area_block{
     justify-content: center;
@@ -18,9 +21,7 @@ textarea{
     margin-top: 20px;
 }
 .keyboard-block{
-    position: absolute;
-    left: 0;
-    bottom: 0;
+    margin-top: 40px;
     width: 100%;
     padding: 5px 0;
     background: #01063ca5;
@@ -33,7 +34,7 @@ textarea{
     justify-content: center;
     align-self: center;
     text-align: center;
-    width: 1200px;
+    width: 1000px;
     max-width: 100%;
     margin: 0 auto;
     flex-wrap: wrap;
@@ -46,7 +47,7 @@ textarea{
     max-width: 90px;
     margin: 3px;
     border-radius: 4px;
-    border: none;
+    border: solid 1px black;
     background: rgba(255, 255, 255, 0.2);
     color: #ffffff;
     font-size: 12px;
@@ -56,10 +57,13 @@ textarea{
     align-items: center;
     justify-content: center;
     vertical-align: top;
-    padding: 0;
     -webkit-tap-highlight-color: transparent;
-    /* position: relative; */
 }
 .keyboard__key:active {
-    background: rgba(255, 255, 255, 0.12);
+    background-color: blueviolet;
+    /* transition: ease-in-out 1s; */
+}
+.active{
+    background-color: blueviolet;
+    /* transition: ease-in-out 1s; */
 }
