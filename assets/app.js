@@ -54,7 +54,11 @@ const keyLayout = [
         key.classList.add("keyboard__key");
         keyboardKeys.appendChild(key);
         key.innerText = keyLayout[i];
-        
+        key.addEventListener("click", (e)=>{
+            if (e.key === keyLayout[i]) {
+                key.classList.add("active")
+            }
+        })
     }
     
 

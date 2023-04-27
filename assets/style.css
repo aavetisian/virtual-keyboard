@@ -61,9 +61,10 @@ textarea{
 }
 .keyboard__key:active {
     background-color: blueviolet;
-    /* transition: ease-in-out 1s; */
+    border-radius: 10px;
+    
 }
 .active{
     background-color: blueviolet;
-    /* transition: ease-in-out 1s; */
+    border-radius: 10px;
 }
