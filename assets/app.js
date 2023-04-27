@@ -42,22 +42,20 @@ const keyLayout = [
         
             textAreaBlock.addEventListener("keydown", (e) => {
                 if (e.key === keyLayout[i]) {
-                    key.classList.add("active")
+                    keyElement.classList.add("active")
                 }
             });
         textAreaBlock.addEventListener("keyup", (e) => {
             if (e.key === keyLayout[i]) {
-                key.classList.remove("active")
+                keyElement.classList.remove("active")
             }
         });
-        const key = document.createElement("button");
-        key.classList.add("keyboard__key");
-        keyboardKeys.appendChild(key);
-        key.innerText = keyLayout[i];
-        key.addEventListener("click", (e)=>{
-            if (e.key === keyLayout[i]) {
-                key.classList.add("active")
-            }
+        const keyElement = document.createElement("button");
+        keyElement.classList.add("keyboard__key");
+        keyboardKeys.appendChild(keyElement);
+        keyElement.innerText = keyLayout[i];
+        keyElement.addEventListener("click", ()=>{
+                textArea.value += keyLayout[i]  
         })
     }
     
