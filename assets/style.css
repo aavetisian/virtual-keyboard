@@ -12,6 +12,7 @@ textarea{
     width: 700px;
     height: 200px;
     margin: 10px;
+    font-size: 20px;
 }
 .text_area_block{
     justify-content: center;
@@ -26,7 +27,7 @@ textarea{
     padding: 5px 0;
     background: #01063ca5;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-    user-select: none;
+    
 }
 
 .keyboard_keys {
@@ -34,7 +35,7 @@ textarea{
     justify-content: center;
     align-self: center;
     text-align: center;
-    width: 1000px;
+    width: 1020px;
     max-width: 100%;
     margin: 0 auto;
     flex-wrap: wrap;
@@ -42,14 +43,13 @@ textarea{
 
 }
 .keyboard__key {
-    height: 45px;
-    width: 6%;
-    max-width: 90px;
+    height: 60px;
+    width: 60px;
+    max-width: 700px;
     margin: 3px;
     border-radius: 4px;
     border: solid 1px black;
     background: rgba(255, 255, 255, 0.2);
-    box-shadow: rgba(255, 255, 255, 0.2);
     color: #ffffff;
     font-size: 12px;
     outline: none;
@@ -68,4 +68,23 @@ textarea{
 .active{
     background-color: blueviolet;
     border-radius: 10px;
+}
+
+.keyboard__key:nth-child(57){
+    width: 390px;
+}
+.keyboard__key:nth-child(61){
+    rotate: 270deg;
+}
+.keyboard__key:nth-child(14),
+.keyboard__key:nth-child(29),
+.keyboard__key:nth-child(53),
+.keyboard__key:nth-child(54),
+.keyboard__key:nth-child(40),
+.keyboard__key:nth-child(41),
+.keyboard__key:nth-child(15) {
+    width: 96px;
+}
+.keyboard__key:nth-child(52) {
+    rotate: 270deg;
 }
