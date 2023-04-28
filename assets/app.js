@@ -54,13 +54,20 @@ console.log(keyLayout.length);
         keyElement.classList.add("keyboard__key");
         keyboardKeys.appendChild(keyElement);
         keyElement.innerText = keyLayout[i];
+        if (keyLayout[i] === " ") {
+            keyElement.classList.add("space");
+        }
         keyElement.addEventListener("click", ()=>{
+            if (keyLayout[i] === "alt" || keyLayout[i] === "shift" || keyLayout[i] === "ctrl" || keyLayout[i] === "home") {
+                return " "
+            } 
+              else if (keyLayout[i] === "backspace"){
+                keyElement.addEventListener("click", ()=>{
+                    textArea.value += textArea.value.slice(0, -1);
+                })
+                
+            }
                 textArea.value += keyLayout[i]  
         });
     }
     
-
-
-    
-
-

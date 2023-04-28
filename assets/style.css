@@ -60,17 +60,13 @@ textarea{
     vertical-align: top;
     -webkit-tap-highlight-color: transparent;
 }
-.keyboard__key:active {
-    background-color: blueviolet;
-    border-radius: 10px;
-    
-}
-.active{
+.keyboard__key:active,
+.active {
     background-color: blueviolet;
     border-radius: 10px;
 }
 
-.keyboard__key:nth-child(57){
+.space{
     width: 390px;
 }
 .keyboard__key:nth-child(61){
