@@ -60,12 +60,11 @@ console.log(keyLayout.length);
         keyElement.addEventListener("click", ()=>{
             if (keyLayout[i] === "alt" || keyLayout[i] === "shift" || keyLayout[i] === "ctrl" || keyLayout[i] === "home") {
                 return " "
-            } 
+            } //todo
               else if (keyLayout[i] === "backspace"){
-                keyElement.addEventListener("click", ()=>{
-                    textArea.value += textArea.value.slice(0, -1);
-                })
-                
+                console.log("clicked");
+                textArea.value = textArea.value.slice(0, -1);
+                return ""
             }
                 textArea.value += keyLayout[i]  
         });
