@@ -33,8 +33,8 @@ const keyLayout = [
     "`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "backspace",
    "tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\",
     "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "'", "enter",
-    "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?", ">", "shift", "ctrl",
-    "home", "alt", " ", "alt", "<", ">", ">", "ctrl"
+    "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?", "˄", "shift", "ctrl",
+    "home", "alt", " ", "alt", "<", "˅", ">", "ctrl"
 ];
 console.log(keyLayout.length);
 
@@ -56,6 +56,11 @@ console.log(keyLayout.length);
         keyElement.innerText = keyLayout[i];
         if (keyLayout[i] === " ") {
             keyElement.classList.add("space");
+        } else if (keyLayout[i] === ">"){
+            console.log("up");
+        }
+         else {
+            keyElement.classList.add(keyLayout[i]);
         }
         keyElement.addEventListener("click", ()=>{
             if (keyLayout[i] === "alt" || keyLayout[i] === "shift" || keyLayout[i] === "ctrl" || keyLayout[i] === "home") {

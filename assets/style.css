@@ -69,9 +69,7 @@ textarea{
 .space{
     width: 390px;
 }
-.keyboard__key:nth-child(61){
-    rotate: 270deg;
-}
+
 .keyboard__key:nth-child(14),
 .keyboard__key:nth-child(29),
 .keyboard__key:nth-child(53),
@@ -80,7 +78,4 @@ textarea{
 .keyboard__key:nth-child(41),
 .keyboard__key:nth-child(15) {
     width: 96px;
-}
-.keyboard__key:nth-child(52) {
-    rotate: 270deg;
 }
