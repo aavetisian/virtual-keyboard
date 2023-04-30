@@ -50,6 +50,13 @@ console.log(keyLayout.length);
                 keyElement.classList.remove("active")
             }
         });
+        textAreaBlock.addEventListener("keydown", (event)=>{
+            if (event.keyCode === 9){
+                    textArea.value += `${"   "}`;
+                    return ""
+            }
+            
+        })
         
         const keyElement = document.createElement("button");
         keyElement.classList.add("keyboard__key");
@@ -75,10 +82,17 @@ console.log(keyLayout.length);
               else if (keyLayout[i] === "backspace"){
                 textArea.value = textArea.value.slice(0, -1);
                 return ""
+            } else if (keyLayout[i] === "tab") {
+                textArea.value += `${"   "}`
+                return ""
             }
             
                 textArea.value += keyLayout[i]  
         });
+        
+
+        // caps
+
         keyElement.addEventListener("dblclick", () => {
             if (keyLayout[i] === "alt" || keyLayout[i] === "shift" || keyLayout[i] === "ctrl" || keyLayout[i] === "home" || keyLayout[i] === "caps") {
                 return ""
@@ -86,7 +100,6 @@ console.log(keyLayout.length);
         });
         keyElement.addEventListener("dblclick", () => {
             if (keyLayout[i] === "caps") {
-
                 keyElement.classList.add("active");
                 const upper = keyLayout.map(element => {
                     return element.toUpperCase()
