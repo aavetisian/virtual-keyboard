@@ -33,9 +33,8 @@ textarea{
 .keyboard_keys {
     display: flex;
     justify-content: center;
-    align-self: center;
     text-align: center;
-    width: 1020px;
+    width: 1030px;
     max-width: 100%;
     margin: 0 auto;
     flex-wrap: wrap;
@@ -51,7 +50,7 @@ textarea{
     border: solid 1px black;
     background: rgba(255, 255, 255, 0.2);
     color: #ffffff;
-    font-size: 12px;
+    font-size: 14px;
     outline: none;
     cursor: pointer;
     display: inline;
@@ -69,13 +68,11 @@ textarea{
 .space{
     width: 390px;
 }
-
-.keyboard__key:nth-child(14),
-.keyboard__key:nth-child(29),
-.keyboard__key:nth-child(53),
-.keyboard__key:nth-child(54),
-.keyboard__key:nth-child(40),
-.keyboard__key:nth-child(41),
-.keyboard__key:nth-child(15) {
+.shift,
+.backspace,
+.tab,
+.caps,
+.enter,
+.del {
     width: 96px;
 }
