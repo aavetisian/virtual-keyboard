@@ -52,11 +52,16 @@ console.log(keyLayout.length);
         });
         textAreaBlock.addEventListener("keydown", (event)=>{
             if (event.keyCode === 9){
-                    textArea.value += `${"   "}`;
-                    return ""
+                event.preventDefault();
+                textArea.value += `${"  "}`
+                    
             }
             
         })
+        
+        
+
+
         
         const keyElement = document.createElement("button");
         keyElement.classList.add("keyboard__key");
@@ -89,7 +94,20 @@ console.log(keyLayout.length);
             
                 textArea.value += keyLayout[i]  
         });
-        
+        keyElement.addEventListener("click", (event)=>{
+            if (keyLayout[i] === "enter") {
+                event.preventDefault();
+                const currentCursorPosition = textArea.selectionStart;
+                const valueBeforeCursor = textArea.value.substring(0, currentCursorPosition);
+                const valueAfterCursor = textArea.value.substring(textArea.selectionEnd, textArea.value.length);
+                const newTextAreaValue = `${valueBeforeCursor}\n${valueAfterCursor}`;
+                textArea.value = newTextAreaValue;
+                textArea.selectionStart = currentCursorPosition + 1;
+                textArea.selectionEnd = currentCursorPosition + 1;
+                return  `${""}`
+            }
+
+        })
 
         // caps
 
