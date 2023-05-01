@@ -46,10 +46,13 @@ let shiftKeylayout = [
 let arabic = [
     "ض", "ص", "ث", "ق", "ف", "غ", "ع", "ه", "خ", "ح", "ج", "د", "ش", "س",
     "ي", "ب", "ل", "ا", "ت", "ن", "م", "ك", "ط", "ئ", "ء", "ؤ", "ر", "ى",
-    "ة", "و", "ز", "ظ", "ذ", "ّ", "َ", "ً", "ُ", "ٌ", "ِ", "ٍ", "ْ", "}",
-    "shift", ">", "<", "؟", "؛", ":", "]", "[", "}", ".", ",", "ئ", "shift",
-    "ctrl", "alt", " ", "alt", "ctrl"
+    "ة", "و", "ز", "ظ", "ذ", "ّ", "َ", "ً", "ُ", "ٌ", "ِ", "ٍ", "ْ", "backspace",
+    "}", ">", "<", "؟", "؛", ":", "]", "[", "}", ".", ",", "ئ", "shift",
+    "ctrl", "alt", " ", "alt", "<", "˅", ">", "ctrl"
 ];
+
+let altPressed = false;
+let shiftPressed = false;
 
 console.log("This app have a bug, sometimes it types key's text/name. I'm in the process of fixing.");
 
@@ -80,7 +83,7 @@ console.log("This app have a bug, sometimes it types key's text/name. I'm in the
         keyElement.innerText = keyLayout[i];
         if (keyLayout[i] === " ") {
             keyElement.classList.add("space");
-        } else if (keyLayout[i] === "˄"){
+        } else if (keyLayout[i] === "^"){
             keyElement.classList.add("up");
         }
         else if (keyLayout[i] === "˅") {
@@ -89,6 +92,28 @@ console.log("This app have a bug, sometimes it types key's text/name. I'm in the
          else {
             keyElement.classList.add(keyLayout[i]);
         }
+        document.addEventListener("click", (event)=>{
+            if (altPressed && shiftPressed) {
+                
+                event.preventDefault();
+                
+                keyLayout = arabic;
+                keyElement.innerText = arabic[i]
+            } 
+        })
+        keyElement.addEventListener("click", function (event) {
+            if (keyLayout[i] === "alt") {
+                altPressed = true;
+            } else if (keyLayout[i] === "shift") {
+                shiftPressed = true;
+            }
+            if (altPressed && shiftPressed) {
+                event.preventDefault();
+                keyLayout = arabic;
+                
+            }
+        });
+
         
         
         keyElement.addEventListener("click", ()=>{
@@ -100,6 +125,9 @@ console.log("This app have a bug, sometimes it types key's text/name. I'm in the
                 return ""
             } else if (keyLayout[i] === "tab") {
                 textArea.value += `${"   "}`
+                return ""
+            } else if (arabic[i] === "backspace") {
+                textArea.value = textArea.value.slice(0, -1);
                 return ""
             }
             
@@ -118,8 +146,7 @@ console.log("This app have a bug, sometimes it types key's text/name. I'm in the
                 return  `${""}`
             } else if (keyLayout[i] === "shift"){
                 keyLayout = shiftKeylayout;
-            }else if(keyElement[i].contains("active")){
-                shiftKeylayout = keyLayout
+                
             }
             
 
@@ -151,7 +178,7 @@ console.log("This app have a bug, sometimes it types key's text/name. I'm in the
             
         })
 
-//shift
+
         
         
     }
@@ -159,4 +186,3 @@ console.log("This app have a bug, sometimes it types key's text/name. I'm in the
     //todo
     //shift, ctrl del alt
     //add second language
-    
