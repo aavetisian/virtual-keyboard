@@ -5,7 +5,7 @@ const heading = document.createElement("h1");
 
 const body = document.querySelector("body")
 
-const headingText = document.createTextNode("Type by clicking mouse or keyboard");
+const headingText = document.createTextNode("Keyboard created in Windows PC");
 body.appendChild(heading)
 heading.append(headingText);
 
@@ -33,10 +33,25 @@ let keyLayout = [
     "`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "backspace",
    "tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\",
     "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "'",  "enter", "del",
-    "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?", "˄",  "shift", "ctrl",
+    "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?", "^",  "shift", "ctrl",
     "home", "alt", " ", "alt", "<", "˅", ">", "ctrl"
 ];
-console.log(keyLayout.length);
+let shiftKeylayout = [
+    "~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", "backspace",
+    "tab", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "{", "}", "|",
+    "caps", "A", "S", "D", "F", "G", "H", "J", "K", "L", "\"", "enter", "del",
+    "shift", "Z", "X", "C", "V", "B", "N", "M", "<", ">", "/", "^", "shift", "ctrl",
+    "home", "alt", " ", "alt", "<", "˅", ">", "ctrl"
+];
+let arabic = [
+    "ض", "ص", "ث", "ق", "ف", "غ", "ع", "ه", "خ", "ح", "ج", "د", "ش", "س",
+    "ي", "ب", "ل", "ا", "ت", "ن", "م", "ك", "ط", "ئ", "ء", "ؤ", "ر", "ى",
+    "ة", "و", "ز", "ظ", "ذ", "ّ", "َ", "ً", "ُ", "ٌ", "ِ", "ٍ", "ْ", "}",
+    "shift", ">", "<", "؟", "؛", ":", "]", "[", "}", ".", ",", "ئ", "shift",
+    "ctrl", "alt", " ", "alt", "ctrl"
+];
+
+console.log("This app have a bug, sometimes it types key's text/name. I'm in the process of fixing.");
 
     for (let i = 0; i < keyLayout.length; i++) {
         
@@ -58,10 +73,6 @@ console.log(keyLayout.length);
             }
             
         })
-        
-        
-
-
         
         const keyElement = document.createElement("button");
         keyElement.classList.add("keyboard__key");
@@ -105,7 +116,12 @@ console.log(keyLayout.length);
                 textArea.selectionStart = currentCursorPosition + 1;
                 textArea.selectionEnd = currentCursorPosition + 1;
                 return  `${""}`
+            } else if (keyLayout[i] === "shift"){
+                keyLayout = shiftKeylayout;
+            }else if(keyElement[i].contains("active")){
+                shiftKeylayout = keyLayout
             }
+            
 
         })
 
@@ -132,7 +148,15 @@ console.log(keyLayout.length);
                 keyLayout = lower
                 textArea.value = ""
             } 
-                
+            
         })
+
+//shift
+        
+        
     }
+    //!!!!!!!!!!ATTENTION!!!!!!!!!HERE!!!!!!!
+    //todo
+    //shift, ctrl del alt
+    //add second language
     
