@@ -5,14 +5,14 @@ const heading = document.createElement("h1");
 
 const body = document.querySelector("body")
 
-const headingText = document.createTextNode("Type by clicking mouse or keyboard");
+const headingText = document.createTextNode("Keyboard created in Windows PC");
 body.appendChild(heading)
 heading.append(headingText);
 
 //textarea block
 const para = document.createElement("p");
 const textArea = document.createElement("textarea");
-const teaserText = document.createTextNode("text");
+const teaserText = document.createTextNode("Please use ONLY double click for caps. For switching language use alt+shift");
 const textAreaBlock = document.createElement("div");
 body.appendChild(textAreaBlock);
 textAreaBlock.appendChild(para);
@@ -29,14 +29,32 @@ keyboardKeys.classList.add("keyboard_keys");
 keyboardBlock.appendChild(keyboardKeys);
 
 
-const keyLayout = [
+let keyLayout = [
     "`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "backspace",
    "tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\",
-    "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "'", "enter",
-    "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?", "˄", "shift", "ctrl",
+    "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "'",  "enter", "del",
+    "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?", "^",  "shift", "ctrl",
     "home", "alt", " ", "alt", "<", "˅", ">", "ctrl"
 ];
-console.log(keyLayout.length);
+let shiftKeylayout = [
+    "~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", "backspace",
+    "tab", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "{", "}", "|",
+    "caps", "A", "S", "D", "F", "G", "H", "J", "K", "L", '"', "enter", "del",
+    "shift", "Z", "X", "C", "V", "B", "N", "M", "<", ">", "/", "^", "shift", "ctrl",
+    "home", "alt", " ", "alt", "<", "˅", ">", "ctrl"
+];
+let arabic = [
+    "ض", "ص", "ث", "ق", "ف", "غ", "ع", "ه", "خ", "ح", "ج", "د", "ش", "س",
+    "ي", "ب", "ل", "ا", "ت", "ن", "م", "ك", "ط", "ئ", "ء", "ؤ", "ر", "ى",
+    "ة", "و", "ز", "ظ", "ذ", "ّ", "َ", "ً", "ُ", "ٌ", "ِ", "ٍ", "ْ", "backspace",
+    "}", ">", "<", "؟", "؛", ":", "]", "[", "}", ".", ",", "ئ", "shift",
+    "ctrl", "alt", " ", "alt", "<", "˅", ">", "ctrl"
+];
+
+let altPressed = false;
+let shiftPressed = false;
+
+console.log("This app have a bug, sometimes it types key's text/name. I'm in the process of fixing.");
 
     for (let i = 0; i < keyLayout.length; i++) {
         
@@ -50,28 +68,121 @@ console.log(keyLayout.length);
                 keyElement.classList.remove("active")
             }
         });
+        textAreaBlock.addEventListener("keydown", (event)=>{
+            if (event.keyCode === 9){
+                event.preventDefault();
+                textArea.value += `${"  "}`
+                    
+            }
+            
+        })
+        
         const keyElement = document.createElement("button");
         keyElement.classList.add("keyboard__key");
         keyboardKeys.appendChild(keyElement);
         keyElement.innerText = keyLayout[i];
         if (keyLayout[i] === " ") {
             keyElement.classList.add("space");
-        } else if (keyLayout[i] === ">"){
-            console.log("up");
+        } else if (keyLayout[i] === "^"){
+            keyElement.classList.add("up");
+        }
+        else if (keyLayout[i] === "˅") {
+            keyElement.classList.add("down");
         }
          else {
             keyElement.classList.add(keyLayout[i]);
         }
+        document.addEventListener("click", (event)=>{
+            if (altPressed && shiftPressed) {
+                
+                event.preventDefault();
+                
+                keyLayout = arabic;
+                keyElement.innerText = arabic[i]
+            } 
+        })
+        keyElement.addEventListener("click", function (event) {
+            if (keyLayout[i] === "alt") {
+                altPressed = true;
+            } else if (keyLayout[i] === "shift") {
+                shiftPressed = true;
+            }
+            if (altPressed && shiftPressed) {
+                event.preventDefault();
+                keyLayout = arabic;
+                
+            }
+        });
+
+        
+        
         keyElement.addEventListener("click", ()=>{
-            if (keyLayout[i] === "alt" || keyLayout[i] === "shift" || keyLayout[i] === "ctrl" || keyLayout[i] === "home") {
-                return " "
-            } //todo
+            if (keyLayout[i] === "alt" || keyLayout[i] === "shift" || keyLayout[i] === "ctrl" || keyLayout[i] === "home" || keyLayout[i] === "caps") {
+                return ""
+            }
               else if (keyLayout[i] === "backspace"){
-                console.log("clicked");
+                textArea.value = textArea.value.slice(0, -1);
+                return ""
+            } else if (keyLayout[i] === "tab") {
+                textArea.value += `${"   "}`
+                return ""
+            } else if (arabic[i] === "backspace") {
                 textArea.value = textArea.value.slice(0, -1);
                 return ""
             }
+            
                 textArea.value += keyLayout[i]  
         });
+        keyElement.addEventListener("click", (event)=>{
+            if (keyLayout[i] === "enter") {
+                event.preventDefault();
+                const currentCursorPosition = textArea.selectionStart;
+                const valueBeforeCursor = textArea.value.substring(0, currentCursorPosition);
+                const valueAfterCursor = textArea.value.substring(textArea.selectionEnd, textArea.value.length);
+                const newTextAreaValue = `${valueBeforeCursor}\n${valueAfterCursor}`;
+                textArea.value = newTextAreaValue;
+                textArea.selectionStart = currentCursorPosition + 1;
+                textArea.selectionEnd = currentCursorPosition + 1;
+                return  `${""}`
+            } else if (keyLayout[i] === "shift"){
+                keyLayout = shiftKeylayout;
+                
+            }
+            
+
+        })
+
+        // caps
+
+        keyElement.addEventListener("dblclick", () => {
+            if (keyLayout[i] === "alt" || keyLayout[i] === "shift" || keyLayout[i] === "ctrl" || keyLayout[i] === "home" || keyLayout[i] === "caps") {
+                return ""
+            }
+        });
+        keyElement.addEventListener("dblclick", () => {
+            if (keyLayout[i] === "caps") {
+                keyElement.classList.add("active");
+                const upper = keyLayout.map(element => {
+                    return element.toUpperCase()
+                })
+                keyLayout = upper
+            }  else if (keyElement.classList.contains("active")) {
+                
+                keyElement.classList.remove("active");
+                const lower = keyLayout.map(element => {
+                    return element.toLowerCase()
+                })
+                keyLayout = lower
+                textArea.value = ""
+            } 
+            
+        })
+
+
+        
+        
     }
-    
+    //!!!!!!!!!!ATTENTION!!!!!!!!!HERE!!!!!!!
+    //todo
+    //shift, ctrl del alt
+    //add second language
