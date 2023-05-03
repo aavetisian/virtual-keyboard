@@ -12,7 +12,7 @@ heading.append(headingText);
 //textarea block
 const para = document.createElement("p");
 const textArea = document.createElement("textarea");
-const teaserText = document.createTextNode("please use ONLY double click for caps");
+const teaserText = document.createTextNode("Please use ONLY double click for caps. For switching language use alt+shift");
 const textAreaBlock = document.createElement("div");
 body.appendChild(textAreaBlock);
 textAreaBlock.appendChild(para);
@@ -39,7 +39,7 @@ let keyLayout = [
 let shiftKeylayout = [
     "~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", "backspace",
     "tab", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "{", "}", "|",
-    "caps", "A", "S", "D", "F", "G", "H", "J", "K", "L", "\"", "enter", "del",
+    "caps", "A", "S", "D", "F", "G", "H", "J", "K", "L", '"', "enter", "del",
     "shift", "Z", "X", "C", "V", "B", "N", "M", "<", ">", "/", "^", "shift", "ctrl",
     "home", "alt", " ", "alt", "<", "˅", ">", "ctrl"
 ];
